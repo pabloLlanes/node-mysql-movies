@@ -1,12 +1,14 @@
 const db = require('./db');
 
 const Movie = require('../api/movies/movie.model');
+const Actor = require('../api/actors/actor.model');
+const Director = require('../api/directors/director.model');
 
 async function initialData() {
   await db.sync();
-  const users = await Movie.count();
+  const movies = await Movie.count();
 
-  if (users > 0) {
+  if (movies > 0) {
     return;
   }
 
@@ -38,6 +40,42 @@ async function initialData() {
       description: 'a history ....'
     })
   ]);
-}
 
+  await Promise.all([
+    Actor.create({
+      name: 'iron man',
+      nickname: 'dasdsadsadsadsad',
+      age: '50'
+    }),
+    Actor.create({
+      name: 'spider man',
+      age: '30',
+      nickname: 'dasdsadsadsadsad'
+    }),
+    Actor.create({
+      name: 'ant man',
+      age: '40',
+      nickname: 'dasdsadsadsadsad'
+    })
+  ]);
+
+  
+  await Promise.all([
+    Director.create({
+      name: 'coppola francis',
+      age: 30,
+      directorYear: 1998
+    }),
+    Director.create({
+      name: 'tarantino',
+      age: 30,
+      directorYear: 1998
+    }),
+    Director.create({
+      name: 'kubrick',
+      age: 40,
+      directorYear: 1998
+    })
+  ]);
+}
 module.exports = { initialData };
