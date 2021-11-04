@@ -9,7 +9,7 @@ const db = new Sequelize(configEnv.dbName, configEnv.dbUser, configEnv.dbPass, {
 
 try {
   // db.sync();
-  console.log("Connection has been established successfully.");
+  console.log("db connection established");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
 }
