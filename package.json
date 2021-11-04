@@ -1,0 +1,33 @@
+{
+  "name": "movies-node-sql",
+  "version": "1.0.0",
+  "description": "api about movies, actors and tv shows",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "mocha tests/api.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabloLlanes/node-mysql-movies.git"
+  },
+  "author": "pablo Llanes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pabloLlanes/node-mysql-movies/issues"
+  },
+  "homepage": "https://github.com/pabloLlanes/node-mysql-movies#readme",
+  "devDependencies": {
+    "mocha": "^9.1.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.14",
+    "supertest": "^6.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "sequelize": "^6.9.0"
+  }
+}
