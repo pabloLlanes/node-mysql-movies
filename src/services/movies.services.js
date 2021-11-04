@@ -1,5 +1,13 @@
 const Movie = require('../api/movies/movie.model');
 
+const readMovies = async () => {
+  try {
+    return await Movie.findAll();
+  } catch (error) {
+    throw error;
+  }
+};
+
 const createMovie = ({ title, year, rank }) => {
   const newMovie = {
     title,
@@ -17,5 +25,6 @@ const createMovie = ({ title, year, rank }) => {
   }
 };
 module.exports = {
-  createMovie
+  createMovie,
+  readMovies
 };

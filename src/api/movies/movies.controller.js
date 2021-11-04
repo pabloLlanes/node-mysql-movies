@@ -1,8 +1,8 @@
 const Movie = require('./movie.model');
-const { createMovie } = require('../../services/movie.services');
+const { createMovie, readMovies } = require('../../services/movies.services');
 
-const getAllMovies = async (req, res) => {
-  const movies = await Movie.findAll();
+const getAllMovies = async (_, res) => {
+  const movies = await readMovies();
 
   res.json(movies);
 };
@@ -10,10 +10,9 @@ const getAllMovies = async (req, res) => {
 const postMovie = async (req, res) => {
   try {
     const data = req.body;
-    console.log(data);
     const movie = await createMovie(data);
 
-    res.json(movie);
+    res.status(201).json({ msg: 'resource created' });
   } catch (e) {
     console.error(e);
     res.status(500).json({
