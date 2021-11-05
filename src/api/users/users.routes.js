@@ -1,12 +1,14 @@
 const { Router } = require('express');
-const { getAllUsers, postUser } = require('./users.controller');
+const { getUsers, createUser, loginUser } = require('./users.controller');
+const { isAuthenticated } = require('../../middlewares/isAuthenticated');
 
 const router = Router();
 
-router.post('/auth/register');
-router.post('/auth/login');
+router.post('/auth/register', createUser);
+router.post('/auth/login', loginUser);
 
-router.get('/', getAllUsers);
-router.post('/', postUser);
+router.get('/', [isAuthenticated], getUsers);
+router.post('/', createUser);
 
 module.exports = router;
+getUsers, createUser, loginUser;

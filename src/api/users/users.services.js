@@ -1,6 +1,9 @@
-const User = require('./user.model');
+const bcrypt = require('bcrypt');
 
-const readUsers = async () => {
+const User = require('./user.model');
+const { createToken } = require('../../helpers/jwt.services');
+
+const readAll = async () => {
   try {
     return await User.findAll();
   } catch (error) {
@@ -8,10 +11,24 @@ const readUsers = async () => {
   }
 };
 
-const createUser = ({ email, password, description }) => {
+const validate = async (id) => {
+  try {
+    const userExist = await User.findOne({ where: id });
+
+    if (!userExist) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const register = ({ email, password, description }) => {
   const newUser = {
     email,
-    password,
+    password: bcrypt.hashSync(password, 5),
     description
   };
   try {
@@ -24,11 +41,29 @@ const createUser = ({ email, password, description }) => {
     throw error;
   }
 };
+const login = async ({ email, password }) => {
+  try {
+    const user = await User.findOne({
+      where: { email }
+    });
 
+    if (!user) {
+      return null;
+    }
+    const isCorrect = await bcrypt.compareSync(password, user.password);
 
+    if (!isCorrect) {
+      return null;
+    }
 
-
+    return createToken(user);
+  } catch (error) {
+    throw error;
+  }
+};
 module.exports = {
-  createUser,
-  readUsers
+  register,
+  readAll,
+  login,
+  validate
 };

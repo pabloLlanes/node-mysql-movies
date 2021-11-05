@@ -8,10 +8,10 @@ const configEnv = {
 
   dbName: process.env.DB_NAME || '',
   dbUser: process.env.DB_USER || '',
-
   dbPass: process.env.DB_PASSWORD || '',
-  dbJwtSecret: process.env.JWT_TOP_SECRET || '',
 
+  jwtSecret: process.env.JWT_TOP_SECRET || '',
+  expiresJwt: process.env.JWT_EXPIRES || '12h'
 };
 
 module.exports = { configEnv };
