@@ -1,5 +1,4 @@
-const Actor = require('./actor.model');
-const { createActor, readActors } = require('../../services/actors.services');
+const { createActor, readActors } = require('./actors.services');
 
 const getAllActors = async (_, res) => {
   const actors = await readActors();

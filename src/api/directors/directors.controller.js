@@ -1,8 +1,5 @@
 const Director = require('./director.model');
-const {
-  createDirector,
-  readDirectors
-} = require('../../services/directors.services');
+const { createDirector, readDirectors } = require('./directors.services');
 
 const getAllDirectors = async (_, res) => {
   const directors = await readDirectors();

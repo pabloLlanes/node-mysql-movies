@@ -3,6 +3,7 @@ const db = require('./db');
 const Movie = require('../api/movies/movie.model');
 const Actor = require('../api/actors/actor.model');
 const Director = require('../api/directors/director.model');
+const User = require('../api/users/user.model');
 
 async function initialData() {
   await db.sync();
@@ -12,7 +13,7 @@ async function initialData() {
     return;
   }
 
-  //create default movies
+  //create fake movies
   await Promise.all([
     Movie.create({
       title: 'avengers',
@@ -41,6 +42,8 @@ async function initialData() {
     })
   ]);
 
+  //create fake actors
+
   await Promise.all([
     Actor.create({
       name: 'iron man',
@@ -59,7 +62,8 @@ async function initialData() {
     })
   ]);
 
-  
+  //create fake directors
+
   await Promise.all([
     Director.create({
       name: 'coppola francis',
@@ -75,6 +79,26 @@ async function initialData() {
       name: 'kubrick',
       age: 40,
       directorYear: 1998
+    })
+  ]);
+
+  //create fake directors
+
+  await Promise.all([
+    User.create({
+      email: 'coppola francis',
+      password: '123456',
+      description: 'is a user'
+    }),
+    User.create({
+      email: 'coppola francis',
+      password: '123456',
+      description: 'is a user'
+    }),
+    User.create({
+      email: 'coppola francis',
+      password: '123456',
+      description: 'is a user'
     })
   ]);
 }

@@ -1,4 +1,4 @@
-const Movie = require('../api/Directors/movie.model');
+const Director = require('./director.model');
 
 const readDirectors = async () => {
   try {
