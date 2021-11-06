@@ -1,5 +1,5 @@
-const { Sequelize } = require("sequelize");
-const { configEnv } = require("./config");
+const { Sequelize } = require('sequelize');
+const { configEnv } = require('./config');
 
 const db = new Sequelize(configEnv.dbName, configEnv.dbUser, configEnv.dbPass, {
   host: configEnv.host,
@@ -9,9 +9,9 @@ const db = new Sequelize(configEnv.dbName, configEnv.dbUser, configEnv.dbPass, {
 
 try {
   // db.sync();
-  console.log("db connection established");
+  console.info('db connection established');
 } catch (error) {
-  console.error("Unable to connect to the database:", error);
+  console.error('Unable to connect to the database:', error);
 }
 
 module.exports = db;

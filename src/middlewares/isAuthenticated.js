@@ -1,8 +1,7 @@
 const dayjs = require('dayjs');
 
-const User = require('../api/users/user.model');
 const { decodeToken } = require('../helpers/jwt.services');
-const { validate } = require('../api/users/users.services');
+const { validateId } = require('../api/users/users.services');
 
 const isAuthenticated = async (req, res, next) => {
   const token = req.header('x-access-token');
@@ -19,7 +18,7 @@ const isAuthenticated = async (req, res, next) => {
     if (!userData.id) {
       return res.status(401).json({ msg: 'unauthorize, invalid token!' });
     }
-    const user = await validate(userData.id, userData.email);
+    const user = await validateId(userData.id);
     if (!user) {
       return res.status(401).json({ msg: 'user not encountered' });
     }

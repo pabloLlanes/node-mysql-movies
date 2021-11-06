@@ -45,25 +45,4 @@ describe('auth endpoints', () => {
       .expect('Content-Type', /json/)
       .expect(401, done);
   });
-
-  /**
-   * test create movie endpoint
-   */
-  /*  it('expect json containing a new movie details', (done) => {
-    let newMovie = {
-      title: 'jurassic ParK',
-      rank: '45',
-      year: '1995'
-    };
-
-    request(app)
-      .post('/api/movies')
-      .send(newMovie)
-      .expect('Content-Type', /json/)
-      .expect(201)
-      .end((err) => {
-        if (err) return done(err);
-        done();
-      });
-  }); */
 });

@@ -1,4 +1,3 @@
-const User = require('./user.model');
 const { register, readAll, login } = require('./users.services');
 
 const getUsers = async (_, res) => {

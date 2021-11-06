@@ -41,7 +41,7 @@ app.use('/api', (req, res) => {
 });
 
 app.listen(configEnv.port, () => {
-  console.log('server running on port: ' + configEnv.port);
+  console.info('server running on port: ' + configEnv.port);
 });
 
 module.exports = app;

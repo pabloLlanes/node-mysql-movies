@@ -11,11 +11,11 @@ const readAll = async () => {
   }
 };
 
-const validate = async (id) => {
+const validateId = async (id) => {
   try {
-    const userExist = await User.findOne({ where: id });
+    const userId = await User.findOne({ where: id });
 
-    if (!userExist) {
+    if (!userId) {
       return false;
     }
 
@@ -24,7 +24,19 @@ const validate = async (id) => {
     throw error;
   }
 };
+const validateEmail = async (email) => {
+  try {
+    const userEmail = await User.findOne({ where: { email } });
 
+    if (!userEmail) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
 const register = ({ email, password, description }) => {
   const newUser = {
     email,
@@ -65,5 +77,6 @@ module.exports = {
   register,
   readAll,
   login,
-  validate
+  validateId,
+  validateEmail
 };
