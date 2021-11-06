@@ -1,9 +1,13 @@
-const db = require('./db');
+const db = require('../config/db');
+const bcrypt = require('bcrypt');
 
 const Movie = require('../api/movies/movie.model');
 const Actor = require('../api/actors/actor.model');
 const Director = require('../api/directors/director.model');
 const User = require('../api/users/user.model');
+const Tvshow = require('../api/tvshows/tvshow.model');
+const Season = require('../api/seasons/season.model');
+const Episode = require('../api/episodes/episode.model');
 
 async function initialData() {
   await db.sync();
@@ -43,7 +47,6 @@ async function initialData() {
   ]);
 
   //create fake actors
-
   await Promise.all([
     Actor.create({
       name: 'iron man',
@@ -63,7 +66,6 @@ async function initialData() {
   ]);
 
   //create fake directors
-
   await Promise.all([
     Director.create({
       name: 'coppola francis',
@@ -82,23 +84,58 @@ async function initialData() {
     })
   ]);
 
-  //create fake directors
+  //create fake users
+  const passwordHash = bcrypt.hashSync('123456', 8);
 
   await Promise.all([
     User.create({
-      email: 'coppola francis',
-      password: '123456',
-      description: 'is a user'
+      email: 'admin@admin.com',
+      password: passwordHash,
+      description: 'is a admin'
     }),
     User.create({
-      email: 'coppola francis',
-      password: '123456',
+      email: 'user@user.com',
+      password: passwordHash,
       description: 'is a user'
+    })
+  ]);
+
+  //create fake tvshows
+  await Promise.all([
+    Tvshow.create({
+      title: 'tv show chernobyl',
+      rank: 5,
+      channel: 'hbo'
     }),
-    User.create({
-      email: 'coppola francis',
-      password: '123456',
-      description: 'is a user'
+    Tvshow.create({
+      title: 'tv show the sopranos',
+      rank: 5,
+      channel: 'amc'
+    })
+  ]);
+  //create fake espisodes
+
+  await Promise.all([
+    Episode.create({
+      title: 'episode 123',
+      description: 'episode #123 about'
+    }),
+    Episode.create({
+      title: 'episode 456',
+      description: 'episode #456 about'
+    })
+  ]);
+
+  //create fake seasons
+
+  await Promise.all([
+    Season.create({
+      title: 'season five',
+      description: 'this is a season five'
+    }),
+    Season.create({
+      title: '7 S',
+      description: 'this is a season seven'
     })
   ]);
 }

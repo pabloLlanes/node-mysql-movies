@@ -8,7 +8,7 @@ describe('auth endpoints', () => {
    */
   const user = {
     email: 'admin@admin.com',
-    password: '123'
+    password: '123456'
   };
   const loginFailPass = {
     email: 'admin@admin.com',

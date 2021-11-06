@@ -1,4 +1,3 @@
-const Movie = require('./movie.model');
 const { createMovie, readMovies } = require('./movies.services');
 
 const getAllMovies = async (_, res) => {

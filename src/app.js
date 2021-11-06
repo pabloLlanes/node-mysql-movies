@@ -5,11 +5,14 @@ const { configEnv } = require('./config/config');
 
 //routes
 const moviesRoutes = require('./api/movies/movies.routes');
+const tvshowsRoutes = require('./api/tvshows/tvshows.routes');
 const actorsRoutes = require('./api/actors/actors.routes');
 const directorsRoutes = require('./api/directors/directors.routes');
+const seasonsRoutes = require('./api/seasons/seasons.routes');
+const episodesRoutes = require('./api/episodes/episodes.routes');
 const usersRoutes = require('./api/users/users.routes');
 
-const { initialData } = require('./config/dataInitial');
+const { initialData } = require('./helpers/dataInitial');
 
 const app = express();
 
@@ -26,8 +29,11 @@ app.use(express.json());
 app.use(logger('tiny'));
 
 app.use('/api/movies', moviesRoutes);
+app.use('/api/tvshows', tvshowsRoutes);
 app.use('/api/actors', actorsRoutes);
 app.use('/api/directors', directorsRoutes);
+app.use('/api/seasons', seasonsRoutes);
+app.use('/api/episodes', episodesRoutes);
 app.use('/api/users', usersRoutes);
 
 app.use('/api', (req, res) => {

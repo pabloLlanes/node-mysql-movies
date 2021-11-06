@@ -2,7 +2,7 @@ const Director = require('./director.model');
 
 const readDirectors = async () => {
   try {
-    return await Movie.findAll();
+    return await Director.findAll();
   } catch (error) {
     throw error;
   }
