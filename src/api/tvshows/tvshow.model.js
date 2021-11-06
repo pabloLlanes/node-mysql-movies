@@ -2,7 +2,6 @@ const { Sequelize } = require('sequelize');
 
 const db = require('../../config/db');
 const Actor = require('../actors/actor.model');
-const Director = require('../directors/director.model');
 const Season = require('../seasons/season.model');
 
 const Tvshow = db.define('Tvshow', {
@@ -16,15 +15,9 @@ const Tvshow = db.define('Tvshow', {
 Tvshow.belongsToMany(Actor, { through: 'tvshowactors' });
 Actor.belongsToMany(Tvshow, { through: 'tvshowactors' });
 
-Director.hasOne(Tvshow, {
-  onDelete: 'RESTRICT',
-  onUpdate: 'RESTRICT'
-});
-Tvshow.belongsTo(Director);
-
 Tvshow.hasMany(Season, {
-  onDelete: 'RESTRICT',
-  onUpdate: 'RESTRICT'
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
 });
 Season.belongsTo(Tvshow);
 

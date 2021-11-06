@@ -14,4 +14,5 @@ Director.hasOne(Episode, {
   onUpdate: 'RESTRICT'
 });
 Episode.belongsTo(Director);
+
 module.exports = Episode;

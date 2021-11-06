@@ -19,7 +19,6 @@ const isAuthenticated = async (req, res, next) => {
     if (!userData.id) {
       return res.status(401).json({ msg: 'unauthorize, invalid token!' });
     }
-    console.log(userData);
     const user = await validate(userData.id, userData.email);
     if (!user) {
       return res.status(401).json({ msg: 'user not encountered' });

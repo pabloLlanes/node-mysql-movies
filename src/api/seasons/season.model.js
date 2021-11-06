@@ -9,7 +9,10 @@ const Season = db.define('Season', {
   description: Sequelize.STRING
 });
 
-Season.hasMany(Episode);
+Season.hasMany(Episode, {
+  onDelete: 'CASCADE',
+  onUpdate: 'CASCADE'
+});
 Episode.belongsTo(Season);
 
 module.exports = Season;
