@@ -6,12 +6,12 @@
 ## Installation
 
 required node and mysql db
-Install my-project with npm
+
 
 ```bash
  git clone https://github.com/pabloLlanes/node-mysql-movies
  cd node-mysql-movies
- npm i
+ npm install
  npm run test ---> for dev mode
  npm start    ---> for production
 ```
