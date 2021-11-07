@@ -23,6 +23,8 @@ required node and mysql db
 
 To run this project, you will need to add the following environment variables to your .env file
 
+`PORT` ---> server express port || default: 4000
+
 `DB_USER` ---> db user name
 
 `DB_PASSWORD` ---> db user name
@@ -34,6 +36,9 @@ To run this project, you will need to add the following environment variables to
 `DB_PORT` ---> db port || default 3306
 
 `JWT_TOP_SECRET` ---> jwt secret key
+
+`JWT_EXPIRES` ---> time to expires jwt || default: '12h'
+
 
 ## API Reference
 
