@@ -113,6 +113,6 @@ To run tests, run the following command
   npm run test
 ```
 
-## Authors
+## Author
 
-- [@katherinepeterson](https://www.github.com/octokatherine)
+- [@pabloLlanes](https://github.com/pabloLlanes)
