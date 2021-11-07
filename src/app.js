@@ -37,6 +37,9 @@ app.use('/api/episodes', episodesRoutes);
 app.use('/api/users', usersRoutes);
 
 app.use('/api', (req, res) => {
+  
+
+
   res.status(200).json({ msg: 'Hello Welcome to my API' });
 });
 

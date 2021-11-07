@@ -1,11 +1,27 @@
+const Director = require('../directors/director.model');
 const Episode = require('./episode.model');
+const Season = require('../seasons/season.model');
 
 const readEpisodes = async () => {
   try {
     return await Episode.findAll({
       attributes: {
-        exclude: ['createdAt', 'updatedAt']
-      }
+        exclude: ['createdAt', 'updatedAt', 'DirectorId', 'SeasonId']
+      },
+      include: [
+        {
+          model: Director,
+          attributes: {
+            exclude: ['createdAt', 'updatedAt']
+          }
+        },
+        {
+          model: Season,
+          attributes: {
+            exclude: ['createdAt', 'updatedAt']
+          }
+        }
+      ]
     });
   } catch (error) {
     throw error;

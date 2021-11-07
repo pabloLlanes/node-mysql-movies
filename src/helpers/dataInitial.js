@@ -9,8 +9,6 @@ const Tvshow = require('../api/tvshows/tvshow.model');
 const Season = require('../api/seasons/season.model');
 const Episode = require('../api/episodes/episode.model');
 
-//await foo.addBars([bar1, bar2]);
-
 async function initialData() {
   await db.sync();
   const movies = await Movie.count();
@@ -22,42 +20,49 @@ async function initialData() {
   //create fake movies
   await Promise.all([
     Movie.create({
-      title: 'Indiana Jones and the Temple of Doom',
+      id: 1,
+      title: 'indiana jones and the temple of doom',
       rank: '4',
       year: 1984,
       description: 'a movie...'
     }),
     Movie.create({
+      id: 2,
       title: 'Transformers ',
       rank: '2',
       year: 2007,
       description: 'a history ....'
     }),
     Movie.create({
+      id: 3,
       title: 'The Shining',
       rank: '5',
       year: 1980,
       description: 'a history ....'
     }),
     Movie.create({
+      id: 4,
       title: 'Batman',
       rank: '1',
       year: 1989,
       description: 'a history ....'
     }),
     Movie.create({
+      id: 5,
       title: 'guardians of the galaxy',
       rank: '4',
       year: 2014,
       description: 'a history ....'
     }),
     Movie.create({
+      id: 6,
       title: 'Saving Private Ryan',
       rank: '4',
       year: 1998,
       description: 'a history ....'
     }),
     Movie.create({
+      id: 7,
       title: 'Jaws',
       rank: '4',
       year: 1975,
@@ -68,19 +73,28 @@ async function initialData() {
   //create fake actors
   await Promise.all([
     Actor.create({
+      id: 1,
       name: 'Jack Nicholson',
       age: 84
     }),
     Actor.create({
+      id: 2,
       name: 'Harrison Ford',
       age: 79
     }),
     Actor.create({
+      id: 3,
       name: 'Danny DeVito',
       age: 76
     }),
     Actor.create({
-      name: 'Shia LaBeouf',
+      id: 4,
+      name: 'shia labeouf',
+      age: 35
+    }),
+    Actor.create({
+      id: 5,
+      name: 'megan fox',
       age: 35
     })
   ]);
@@ -88,18 +102,28 @@ async function initialData() {
   //create fake directors
   await Promise.all([
     Director.create({
-      name: 'Steven Spielberg',
+      id: 1,
+      name: 'steven spielberg',
       age: 74,
       directorYear: 1998
     }),
     Director.create({
+      id: 2,
       name: 'tarantino',
       age: 30,
       directorYear: 1998
     }),
     Director.create({
+      id: 3,
       name: 'kubrick',
       age: 40,
+      directorYear: 1998
+    }),
+
+    Director.create({
+      id: 4,
+      name: 'Michael Bay',
+      age: 56,
       directorYear: 1998
     })
   ]);
@@ -123,26 +147,45 @@ async function initialData() {
   //create fake tvshows
   await Promise.all([
     Tvshow.create({
-      title: 'tv show chernobyl',
+      id: 1,
+      title: 'the simpsons',
+      rank: 5,
+      channel: 'fox'
+    }),
+    Tvshow.create({
+      id: 2,
+
+      title: 'the walking dead',
+      rank: 5,
+      channel: 'amc'
+    }),
+    Tvshow.create({
+      id: 3,
+
+      title: 'the sopranos',
       rank: 5,
       channel: 'hbo'
     }),
     Tvshow.create({
-      title: 'tv show the sopranos',
-      rank: 5,
-      channel: 'amc'
+      id: 4,
+
+      title: 'chernobyl',
+      rank: 3,
+      channel: 'hbo'
     })
   ]);
-  //create fake espisodes
 
+  //create fake espisodes
   await Promise.all([
     Episode.create({
-      title: 'episode 123',
-      description: 'episode #123 about'
+      id: 1,
+      title: 'special halloween XI - ep.05',
+      description: 'a episode of theSimpsons'
     }),
     Episode.create({
-      title: 'episode 456',
-      description: 'episode #456 about'
+      id: 2,
+      title: 'genius homer',
+      description: 'a episode of theSimpsons'
     })
   ]);
 
@@ -150,20 +193,24 @@ async function initialData() {
 
   await Promise.all([
     Season.create({
-      title: 'season five',
-      description: 'this is a season five'
+      id: 1,
+      title: 'season one - S1',
+      description: 'season simpsons'
     }),
     Season.create({
-      title: '7 S',
-      description: 'this is a season seven'
+      id: 2,
+      title: 'season two - S2',
+      description: 'season simpsons'
     }),
     Season.create({
-      title: 'tres',
-      description: 'this is a season three'
+      id: 3,
+      title: 'season - sopranos 1',
+      description: 'sopra season 01'
     }),
     Season.create({
-      title: 'cuatro',
-      description: 'this is a season four'
+      id: 4,
+      title: 's02 twd',
+      description: 'the walking dead - season 2'
     })
   ]);
 
@@ -172,6 +219,22 @@ async function initialData() {
    */
 
   //movie add Actor
+
+  const [moviesCount, actorsCount, directorsCount, tvshowsCount] =
+    await Promise.all([
+      Movie.count(),
+      Actor.count(),
+      Episode.count(),
+      Tvshow.count(),
+      Season.count(),
+      Episode.count()
+    ]);
+
+  console.info('total movies: ' + moviesCount);
+  console.info('total actors: ' + actorsCount);
+  console.info('total director: ' + directorsCount);
+  console.info('total tvshows: ' + tvshowsCount);
+
   const movieAddActor = async (movieId, actorId) => {
     try {
       const movieFound = await Movie.findByPk(movieId);
@@ -192,10 +255,11 @@ async function initialData() {
     }
   };
 
+  //indi jon 1 - ford  2
   movieAddActor(1, 2);
-  movieAddActor(1, 3);
-  movieAddActor(2, 2);
   movieAddActor(2, 4);
+  movieAddActor(2, 5);
+  movieAddActor(3, 1);
 
   //movie add Director
   const movieAddDirector = async (movieId, directorId) => {
@@ -217,8 +281,11 @@ async function initialData() {
     }
   };
 
-  movieAddDirector(1, 2);
-  movieAddDirector(3, 1);
+  movieAddDirector(1, 1);
+  movieAddDirector(3, 3);
+  movieAddDirector(2, 4);
+  movieAddDirector(6, 1);
+  movieAddDirector(7, 1);
 
   //tvshow add season
   const tvshowAddSeason = async (tvshowId, SeasonId) => {
@@ -242,6 +309,8 @@ async function initialData() {
 
   tvshowAddSeason(1, 1);
   tvshowAddSeason(1, 2);
+  tvshowAddSeason(2, 4);
+  tvshowAddSeason(3, 3);
 
   //season add episode & director
   const seasonAddEpisodeDirector = async (seasonId, episodeId, directorId) => {
