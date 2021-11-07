@@ -10,6 +10,9 @@ required node and mysql db
 
 ```bash
  git clone https://github.com/pabloLlanes/node-mysql-movies
+ ```
+ ```bash
+
  cd node-mysql-movies
  npm install
  npm run test ---> for dev mode
