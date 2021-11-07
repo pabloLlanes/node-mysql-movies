@@ -1,7 +1,7 @@
-## Tech Stack
+## Backend movies - NodeJS & MySql
 
 **Server:** Node, Express
-**Data Base:** MySQL
+**DataBase:** MySQL
 
 ## Installation
 
