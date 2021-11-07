@@ -31,11 +31,12 @@ const readMovies = async () => {
   }
 };
 
-const createMovie = ({ title, year, rank }) => {
+const createMovie = ({ title, description, year, rank }) => {
   const newMovie = {
     title,
     year,
-    rank
+    rank,
+    description
   };
   try {
     const createdMovie = Movie.create(newMovie);

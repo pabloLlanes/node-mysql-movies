@@ -5,6 +5,7 @@ const registerValidator = [
     .trim()
     .notEmpty()
     .normalizeEmail()
+    .isEmail()
     .withMessage('INVALID_EMAIL')
     .bail(),
   body('password')
@@ -13,7 +14,7 @@ const registerValidator = [
     .notEmpty()
     .withMessage('not empty')
     .bail()
-    .isLength({ min: 5, max: 16 })
+    .isLength({ min: 6, max: 16 })
     .withMessage('password min 6'),
   body('description')
     .trim()
@@ -21,7 +22,7 @@ const registerValidator = [
     .notEmpty()
     .withMessage('not empty')
     .bail()
-    .isLength({ min: 2 })
+    .isLength({ min: 2, max: 150 })
     .withMessage('min 3'),
 
   async (req, res, next) => {
@@ -40,6 +41,7 @@ const loginValidator = [
     .trim()
     .notEmpty()
     .normalizeEmail()
+    .isEmail()
     .withMessage('INVALID_EMAIL')
     .bail(),
   body('password')
@@ -50,6 +52,7 @@ const loginValidator = [
     .bail()
     .isLength({ min: 6, max: 16 })
     .withMessage('password min 6'),
+
   (req, res, next) => {
     const errors = validationResult(req);
 
@@ -61,4 +64,34 @@ const loginValidator = [
   }
 ];
 
-module.exports = { registerValidator, loginValidator };
+const createModelFilm = [
+  body('title')
+    .trim()
+    .notEmpty()
+    .withMessage('not empty')
+    .toLowerCase()
+    .isLength({ min: 3, max: 32 })
+    .withMessage('model min 6'),
+
+  body('description')
+    .trim()
+    .notEmpty()
+    .withMessage('not empty')
+    .toLowerCase()
+    .isLength({ min: 3, max: 32 })
+    .withMessage('description min 6'),
+
+  body('year').trim().notEmpty().withMessage('not empty').toInt(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(401).json({ errors: errors.array() });
+    }
+
+    next();
+  }
+];
+
+module.exports = { registerValidator, loginValidator, createModelFilm };

@@ -2,7 +2,7 @@ const request = require('supertest');
 
 const app = require('../src/app');
 
-describe('auth endpoints', () => {
+describe('test auth routes endpoints', () => {
   /**
    * login ok
    */

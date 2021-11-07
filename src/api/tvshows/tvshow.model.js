@@ -8,8 +8,7 @@ const Tvshow = db.define('Tvshow', {
   id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
   title: Sequelize.STRING,
   rank: Sequelize.INTEGER,
-
-  channel: Sequelize.STRING
+  description: Sequelize.STRING
 });
 
 Tvshow.belongsToMany(Actor, { through: 'tvshowactors' });

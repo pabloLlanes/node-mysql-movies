@@ -2,23 +2,23 @@ const request = require('supertest');
 
 const app = require('../src/app');
 
-describe('tests public routes movies endpoints', () => {
+describe('tests public routes tvshows endpoints', () => {
   /**
-   * test get all characters
+   * test get all tvshows
    */
-  it('expect json containing list of all movies', (done) => {
+  it('expect json containing list of all tvshows', (done) => {
     request(app)
-      .get('/api/movies')
+      .get('/api/tvshows')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
   /**
-   * test get all movies endpoint
+   * test get all tvshows endpoint
    */
-  it('expect json containing list of all characters', (done) => {
+  it('expect json containing list of all tvshows', (done) => {
     request(app)
-      .get('/api/characters')
+      .get('/api/tvshows')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
@@ -28,7 +28,7 @@ describe('tests public routes movies endpoints', () => {
 /**
  *
  */
-describe('tests protected routes movies endpoints', () => {
+describe('tests protected routes tvshows endpoints', () => {
   let token = null;
   const loginUser = {
     email: 'admin@admin.com',
@@ -49,18 +49,18 @@ describe('tests protected routes movies endpoints', () => {
   });
 
   /**
-   * test create user endpoint
+   * test create tvshow endpoint
    */
-  it('create user, require token', (done) => {
-    let newMovie = {
-      title: 'jurasicc park',
+  it('create tvshow, require token', (done) => {
+    let newTvshow = {
+      title: 'the simpsons',
       year: 2000,
-      description: 'big dinosaurs'
+      description: 'bart and lisa'
     };
     request(app)
-      .post('/api/movies')
+      .post('/api/tvshows')
       .set('x-access-token', token)
-      .send(newMovie)
+      .send(newTvshow)
       .expect('Content-Type', /json/)
       .expect(201)
       .end((err) => {

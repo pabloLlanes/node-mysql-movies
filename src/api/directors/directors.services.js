@@ -8,11 +8,10 @@ const readDirectors = async () => {
   }
 };
 
-const createDirector = ({ name, age, directorYear }) => {
+const createDirector = ({ name, age }) => {
   const newDirector = {
     name,
-    age,
-    directorYear
+    age
   };
   try {
     const createDirector = Director.create(newDirector);

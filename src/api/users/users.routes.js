@@ -9,7 +9,7 @@ const {
 const router = Router();
 
 router.post('/auth/register', [registerValidator, isRegistered], createUser);
-router.post('/auth/login', loginUser);
+router.post('/auth/login', [loginValidator], loginUser);
 
 router.get('/', [isAuthenticated], getUsers);
 router.post('/', [isRegistered], createUser);

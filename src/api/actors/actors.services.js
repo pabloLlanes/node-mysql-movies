@@ -8,11 +8,10 @@ const readActors = async () => {
   }
 };
 
-const createActor = ({ name, age, nickname }) => {
+const createActor = ({ name, age }) => {
   const newActor = {
     name,
-    age,
-    nickname
+    age
   };
   try {
     const createdActor = Actor.create(newActor);

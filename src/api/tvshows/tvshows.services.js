@@ -1,6 +1,6 @@
 const Tvshow = require('./tvshow.model');
 const Actor = require('../actors/actor.model');
-const Director = require('../directors/director.model');
+const Season = require('../seasons/season.model');
 
 const readTvshows = async () => {
   try {
@@ -19,7 +19,7 @@ const readTvshows = async () => {
           }
         },
         {
-          model: Director,
+          model: Season,
           attributes: {
             exclude: ['createdAt', 'updatedAt']
           }
@@ -31,11 +31,12 @@ const readTvshows = async () => {
   }
 };
 
-const createTvshow = ({ title, channel, rank }) => {
+const createTvshow = ({ title, year, rank, description }) => {
   const newTvshow = {
     title,
-    channel,
-    rank
+    year,
+    rank,
+    description
   };
   try {
     const createdTvshow = Tvshow.create(newTvshow);

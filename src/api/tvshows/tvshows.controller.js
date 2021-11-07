@@ -11,7 +11,7 @@ const postTvshow = async (req, res) => {
     const data = req.body;
     const tvshow = await createTvshow(data);
 
-    res.status(201).json({ data: tvshow, msg: 'resource created' });
+    res.status(201).json({ tvshow, msg: 'resource created' });
   } catch (e) {
     console.error(e);
     res.status(500).json({
