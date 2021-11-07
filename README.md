@@ -15,7 +15,7 @@ required node and mysql db
 
  cd node-mysql-movies
  npm install
- npm run test ---> for dev mode
+ npm run dev  ---> for dev mode
  npm start    ---> for production
 ```
 
