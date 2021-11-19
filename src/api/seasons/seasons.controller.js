@@ -1,4 +1,5 @@
 const { createSeason, readSeasons } = require('./seasons.services');
+const { CREATED_DONE, CREATE_FAIL } = require('../../helpers/messages');
 
 const getAllSeasons = async (_, res) => {
   const seasons = await readSeasons();
@@ -11,12 +12,10 @@ const postSeason = async (req, res) => {
     const data = req.body;
     const season = await createSeason(data);
 
-    res.status(201).json({ data: season, msg: 'resource created' });
+    res.status(201).json({ msg: CREATED_DONE, season });
   } catch (e) {
     console.error(e);
-    res.status(500).json({
-      msg: 'internal server error: create character'
-    });
+    return res.status(500).json({ error: CREATE_FAIL });
   }
 };
 

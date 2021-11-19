@@ -1,4 +1,5 @@
 const { body, validationResult } = require('express-validator');
+const { INVALID_EMAIL } = require('../helpers/messages');
 
 const registerValidator = [
   body('email')
@@ -6,7 +7,7 @@ const registerValidator = [
     .notEmpty()
     .normalizeEmail()
     .isEmail()
-    .withMessage('INVALID_EMAIL')
+    .withMessage(INVALID_EMAIL)
     .bail(),
   body('password')
     .trim()

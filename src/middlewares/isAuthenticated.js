@@ -1,6 +1,11 @@
 const dayjs = require('dayjs');
+const {
+  AUTH_TOKEN_EXPIRED,
+  AUTH_TOKEN_INVALID,
+  INVALID_CREDENTIAL
+} = require('../helpers/messages');
 
-const { decodeToken } = require('../helpers/jwt.services');
+const { decodeToken } = require('../api/users/jwt.services');
 const { validateId } = require('../api/users/users.services');
 
 const isAuthenticated = async (req, res, next) => {
@@ -8,19 +13,19 @@ const isAuthenticated = async (req, res, next) => {
 
   try {
     if (!token) {
-      return res.status(401).json({ msg: 'unauthorize, token is required' });
+      return res.status(401).json({ msg: AUTH_TOKEN_INVALID });
     }
     const userData = decodeToken(token);
 
     if (userData.exp <= dayjs().unix()) {
-      return res.status(401).json({ msg: 'token expired!' });
+      return res.status(401).json({ msg: AUTH_TOKEN_EXPIRED });
     }
     if (!userData.id) {
-      return res.status(401).json({ msg: 'unauthorize, invalid token!' });
+      return res.status(401).json({ msg: AUTH_TOKEN_INVALID });
     }
     const user = await validateId(userData.id);
     if (!user) {
-      return res.status(401).json({ msg: 'user not encountered' });
+      return res.status(401).json({ msg: INVALID_CREDENTIAL });
     }
 
     req.user = user;
@@ -28,7 +33,7 @@ const isAuthenticated = async (req, res, next) => {
     next();
   } catch (e) {
     res.status(401).json({
-      msg: 'error: token invalid or expired'
+      msg: AUTH_TOKEN_INVALID
     });
   }
 };

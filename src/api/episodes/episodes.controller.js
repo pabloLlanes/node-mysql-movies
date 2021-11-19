@@ -1,4 +1,5 @@
 const { createEpisode, readEpisodes } = require('./episodes.services');
+const { CREATED_DONE, CREATE_FAIL } = require('../../helpers/messages');
 
 const getAllEpisodes = async (_, res) => {
   const episodes = await readEpisodes();
@@ -11,12 +12,10 @@ const postEpisode = async (req, res) => {
     const data = req.body;
     const episode = await createEpisode(data);
 
-    res.status(201).json({ data: episode, msg: 'resource created' });
+    res.status(201).json({ msg: CREATED_DONE, episode });
   } catch (e) {
     console.error(e);
-    res.status(500).json({
-      msg: 'internal server error: create character'
-    });
+    return res.status(500).json({ error: CREATE_FAIL });
   }
 };
 
