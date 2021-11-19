@@ -4,7 +4,7 @@ const app = require('../src/app');
 
 describe('tests public routes movies endpoints', () => {
   /**
-   * test get all characters
+   * test get all movies
    */
   it('expect json containing list of all movies', (done) => {
     request(app)
@@ -16,9 +16,9 @@ describe('tests public routes movies endpoints', () => {
   /**
    * test get all movies endpoint
    */
-  it('expect json containing list of all characters', (done) => {
+  it('expect json containing list of all actors', (done) => {
     request(app)
-      .get('/api/characters')
+      .get('/api/actors')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);

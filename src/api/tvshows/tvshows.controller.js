@@ -15,7 +15,7 @@ const postTvshow = async (req, res) => {
   } catch (e) {
     console.error(e);
     res.status(500).json({
-      msg: 'internal server error: create character'
+      msg: 'internal server error: create Tvshow'
     });
   }
 };
