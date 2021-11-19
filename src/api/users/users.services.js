@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
 const User = require('./user.model');
-const { createToken } = require('../../helpers/jwt.services');
+const { createToken } = require('./jwt.services');
 
 const readAll = async () => {
   try {

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { configEnv } = require('../config/config');
+const { configEnv } = require('../../config/config');
 
 const createToken = (data) => {
   const { id, email } = data;

@@ -28,21 +28,21 @@ async function initialData() {
     }),
     Movie.create({
       id: 2,
-      title: 'Transformers ',
+      title: 'transformers ',
       rank: '2',
       year: 2007,
       description: 'a history ....'
     }),
     Movie.create({
       id: 3,
-      title: 'The Shining',
+      title: 'the shining',
       rank: '5',
       year: 1980,
       description: 'a history ....'
     }),
     Movie.create({
       id: 4,
-      title: 'Batman',
+      title: 'batman',
       rank: '1',
       year: 1989,
       description: 'a history ....'
@@ -56,14 +56,14 @@ async function initialData() {
     }),
     Movie.create({
       id: 6,
-      title: 'Saving Private Ryan',
+      title: 'saving private ryan',
       rank: '4',
       year: 1998,
       description: 'a history ....'
     }),
     Movie.create({
       id: 7,
-      title: 'Jaws',
+      title: 'jaws',
       rank: '4',
       year: 1975,
       description: 'a history ....'
@@ -74,17 +74,17 @@ async function initialData() {
   await Promise.all([
     Actor.create({
       id: 1,
-      name: 'Jack Nicholson',
+      name: 'jack nicholson',
       age: 84
     }),
     Actor.create({
       id: 2,
-      name: 'Harrison Ford',
+      name: 'harrison ford',
       age: 79
     }),
     Actor.create({
       id: 3,
-      name: 'Danny DeVito',
+      name: 'danny deVito',
       age: 76
     }),
     Actor.create({
@@ -115,14 +115,14 @@ async function initialData() {
     }),
     Director.create({
       id: 3,
-      name: 'kubrick',
+      name: 'stanley kubrick',
       age: 40,
       directorYear: 1998
     }),
 
     Director.create({
       id: 4,
-      name: 'Michael Bay',
+      name: 'michael bay',
       age: 56,
       directorYear: 1998
     })

@@ -1,5 +1,6 @@
 const Director = require('./director.model');
 const { createDirector, readDirectors } = require('./directors.services');
+const { CREATED_DONE, CREATE_FAIL } = require('../../helpers/messages');
 
 const getAllDirectors = async (_, res) => {
   const directors = await readDirectors();
@@ -12,12 +13,10 @@ const postDirector = async (req, res) => {
     const data = req.body;
     const director = await createDirector(data);
 
-    res.status(201).json({ director, msg: 'resource created' });
+    res.status(201).json({ msg: CREATED_DONE, director });
   } catch (e) {
     console.error(e);
-    res.status(500).json({
-      msg: 'internal server error: create Directorcter'
-    });
+    return res.status(500).json({ error: CREATE_FAIL });
   }
 };
 

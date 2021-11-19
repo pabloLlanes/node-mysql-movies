@@ -1,4 +1,5 @@
 const { register, readAll, login } = require('./users.services');
+const { CREATED_DONE, CREATE_FAIL } = require('../../helpers/messages');
 
 const getUsers = async (_, res) => {
   const users = await readAll();
@@ -11,12 +12,10 @@ const createUser = async (req, res) => {
     const data = req.body;
     const user = await register(data);
 
-    res.status(201).json({ msg: 'resource created', data: user });
+    res.status(201).json({ msg: CREATED_DONE, user });
   } catch (e) {
     console.error(e);
-    res.status(500).json({
-      msg: 'internal server error: user'
-    });
+    return res.status(500).json({ error: CREATE_FAIL });
   }
 };
 const loginUser = async (req, res) => {
